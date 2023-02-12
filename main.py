@@ -8,29 +8,34 @@ class Player():
         self.experience = 2
         self.strength = 5.2
         self.armor = 20.3
-        self.power = 10
         self.x = 0
         self.y = 0
 
     def move(self, x, y, yn, xn):
+        # yn - change y coordinate
+        # xn - change x coordinate
         self.x = self.x + xn
         self.y = self.y + yn
 
     def attack(self, damage, target):
-        selfharm = damage//10
-        if damage - selfharm <= 0:
-            print("You suicide")
-            self.kill
-        else:
-            damage = damage - target.armor
-            target.health = target.health - damage
-            self.power = self.power - selfharm
+        selfdamage = damage//10
+        damage = damage - target.armor
+        target.health = target.health - damage
+        self.health = self.health - selfdamage
 
     def build(self, amount):
         pass
 
     def regen(self):
-        self.power = self.power + 1
+        self.health = self.health + 1\
+
+    def checklive(self):
+        if self.health <= 0:
+            print("You suicided")
+            self.kill
+
+    while True:
+        checklive
 
 while True:
     action = input()
@@ -60,6 +65,3 @@ while True:
 
     else:
         print("incoorrect action")
-
-
-
