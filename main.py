@@ -1,10 +1,20 @@
 Entytes = list()
+Blocks = list()
+class Block():
+    y = 0
+    x = 0
+    def __init__(self):
+        Blocks.insert(len(Blocks) + 1 , self )
+
+    def delete(self):
+        Blocks.remove(self)
+
 class Player():
 
 
     def __init__(self):
 
-        print("Enter name:")
+        print("Enter name (if you will play this body type iam) :")
         self.name = input()
         self.health = 100
         self.experience = 2
@@ -12,7 +22,7 @@ class Player():
         self.armor = 20.3
         self.x = 0
         self.y = 0
-        Entytes.insert(len(Entytes) , self)
+        Entytes.insert(self.name , self)
 
     def move(self, x, y, yn, xn):
         # yn - change y coordinate
@@ -39,43 +49,71 @@ class Player():
         if self.health > 0:
             pass
         else:
-            print("You suicided")
+            print("You die")
             self.kill
+            return(False)
 
-Player.iam
-print()("Creating your player ...")
+    def kill(self):
+        Entytes.remove(self)
+        if self == iam:
+            initPlayer()
 
-while True:
+def initPlayer:
+    iam = Player()
+    print("Creating your player ...")
+    main()
 
-    i = 0
+def main:
 
-    while i <= len(Entytes):
-        Entytes(i).cheklive
+    while True:
 
-    action = input()
+        i = 0
 
-    if action == "join":
-        iam = Player()
+        while i <= len(Entytes):
+            Entytes(i).cheklive
 
-    elif action == "add player":
-        added = Player()
+        action = input()
 
-    elif action == "attack":
-        print("Enter target:")
-        target = input()
-        print("Enter power of attack:")
-        damage = input()
-        iam.attack(damage, target)
+        if action == "join":
+            iam = Player()
 
-    elif action == "move":
-        print("Enter distance x:")
-        xn = input()
-        print("also y:")
-        yn = input()
-        iam.move(iam.x, iam.y, xn, yn)
+        elif action == "add entyty":
+            added = Player()
 
-    elif action == "exit":
-        quit(0)
+        elif action == "attack":
+            print("Enter target:")
+            target = input()
+            print("Enter power of attack:")
+            damage = int(input())
+            iam.attack(damage, target)
 
-    else:
-        print("incoorrect action")
+        elif action == "move":
+            print("Enter distance x:")
+            xn = int(input())
+            print("also y:")
+            yn = int(input())
+            iam.move(iam.x, iam.y, xn, yn)
+
+        elif action == "exit":
+            quit(0)
+
+        elif action == "set block":
+            print("Enter location")
+            print("x:")
+            blockx = int(input())
+            print("y:")
+            blocky = int(input())
+            if iam.x + 1 or - 1 == blockx and iam.y + 1 or - 1 == blocky
+                new = Block()
+                Blocks(len(Blocks)).y = blocky
+                Blocks(len(Blocks)).x = blockx
+            elif iam.x == blockx and iam.y == blocky:
+                print("You can't create block at youself")
+                main()
+            else:
+                print("It not near")
+                main()
+
+        else:
+            print("incoorrect action")
+            main()
