@@ -1,7 +1,11 @@
+import sys
+
+Entytes = list()
 class Player():
 
 
     def __init__(self):
+
         print("Enter name:")
         self.name = input()
         self.health = 100
@@ -10,6 +14,7 @@ class Player():
         self.armor = 20.3
         self.x = 0
         self.y = 0
+        Entytes.insert(len(Entytes) , self)
 
     def move(self, x, y, yn, xn):
         # yn - change y coordinate
@@ -18,10 +23,14 @@ class Player():
         self.y = self.y + yn
 
     def attack(self, damage, target):
-        selfdamage = damage//10
-        damage = damage - target.armor
-        target.health = target.health - damage
-        self.health = self.health - selfdamage
+        if target.x == self.x + 1 or self.x - 1 and target.y == self.y + 1 or self.y - 1:
+            selfdamage = damage//10
+            damage = damage - target.armor
+            target.health = target.health - damage
+            self.health = self.health - selfdamage
+        else:
+            print("Target is not near")
+            break
 
     def build(self, amount):
         pass
@@ -30,14 +39,21 @@ class Player():
         self.health = self.health + 1\
 
     def checklive(self):
-        if self.health <= 0:
+        if self.health > 0
+            pass
+        else:
             print("You suicided")
             self.kill
 
-    while True:
-        checklive
+Player.iam
+Print("Creating your player ...")
 
 while True:
+
+ i = 0
+    while i <= len(Entytes):
+        Entytes(i).cheklive
+
     action = input()
 
     if action == "join":
@@ -61,7 +77,7 @@ while True:
         iam.move(iam.x, iam.y, xn, yn)
 
     elif action == "exit":
-        break
+        sys.quit()
 
     else:
         print("incoorrect action")
