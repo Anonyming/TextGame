@@ -1,5 +1,3 @@
-import sys
-
 Entytes = list()
 class Player():
 
@@ -30,7 +28,6 @@ class Player():
             self.health = self.health - selfdamage
         else:
             print("Target is not near")
-            break
 
     def build(self, amount):
         pass
@@ -39,18 +36,19 @@ class Player():
         self.health = self.health + 1\
 
     def checklive(self):
-        if self.health > 0
+        if self.health > 0:
             pass
         else:
             print("You suicided")
             self.kill
 
 Player.iam
-Print("Creating your player ...")
+print()("Creating your player ...")
 
 while True:
 
- i = 0
+    i = 0
+
     while i <= len(Entytes):
         Entytes(i).cheklive
 
@@ -77,7 +75,7 @@ while True:
         iam.move(iam.x, iam.y, xn, yn)
 
     elif action == "exit":
-        sys.quit()
+        quit(0)
 
     else:
         print("incoorrect action")
