@@ -1,5 +1,6 @@
 Entytes = list()
 Blocks = list()
+
 class Block():
     y = 0
     x = 0
@@ -14,15 +15,15 @@ class Player():
 
     def __init__(self):
 
-        print("Enter name (if you will play this body type iam) :")
-        self.name = input()
+        print("Enter number (if you will play this body type 0):")
+        self.name = int(input())
         self.health = 100
         self.experience = 2
         self.strength = 5.2
         self.armor = 20.3
         self.x = 0
         self.y = 0
-        Entytes.insert(self.name , self)
+        Entytes[self.name]=self
 
     def move(self, x, y, yn, xn):
         # yn - change y coordinate
@@ -55,22 +56,25 @@ class Player():
 
     def kill(self):
         Entytes.remove(self)
-        if self == iam:
+        if self.name == 0:
             initPlayer()
 
-def initPlayer:
+def initPlayer():
     iam = Player()
     print("Creating your player ...")
     main()
 
-def main:
+def main():
 
     while True:
 
         i = 0
 
         while i <= len(Entytes):
-            Entytes(i).cheklive
+            if Entytes[i] is not None:
+                Entytes[i].cheklive()
+            else:
+                break
 
         action = input()
 
@@ -103,7 +107,7 @@ def main:
             blockx = int(input())
             print("y:")
             blocky = int(input())
-            if iam.x + 1 or - 1 == blockx and iam.y + 1 or - 1 == blocky
+            if iam.x + 1 or - 1 == blockx and iam.y + 1 or - 1 == blocky:
                 new = Block()
                 Blocks(len(Blocks)).y = blocky
                 Blocks(len(Blocks)).x = blockx
@@ -117,3 +121,6 @@ def main:
         else:
             print("incoorrect action")
             main()
+
+if __name__ == '__main__':
+    main()
