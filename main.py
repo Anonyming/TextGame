@@ -1,126 +1,65 @@
-Entytes = list()
-Blocks = list()
-
-class Block():
-    y = 0
-    x = 0
-    def __init__(self):
-        Blocks.insert(len(Blocks) + 1 , self )
-
-    def delete(self):
-        Blocks.remove(self)
-
-class Player():
-
-
-    def __init__(self):
-
-        print("Enter number (if you will play this body type 0):")
-        self.name = int(input())
-        self.health = 100
-        self.experience = 2
-        self.strength = 5.2
-        self.armor = 20.3
-        self.x = 0
-        self.y = 0
-        Entytes[self.name]=self
-
-    def move(self, x, y, yn, xn):
-        # yn - change y coordinate
-        # xn - change x coordinate
-        self.x = self.x + xn
-        self.y = self.y + yn
-
-    def attack(self, damage, target):
-        if target.x == self.x + 1 or self.x - 1 and target.y == self.y + 1 or self.y - 1:
-            selfdamage = damage//10
-            damage = damage - target.armor
-            target.health = target.health - damage
-            self.health = self.health - selfdamage
-        else:
-            print("Target is not near")
-
-    def build(self, amount):
-        pass
-
-    def regen(self):
-        self.health = self.health + 1\
-
-    def checklive(self):
-        if self.health > 0:
-            pass
-        else:
-            print("You die")
-            self.kill
-            return(False)
-
-    def kill(self):
-        Entytes.remove(self)
-        if self.name == 0:
-            initPlayer()
+import EntytyOrientedGameEngine.EntytyOrientedGameEngine as engine
 
 def initPlayer():
-    iam = Player()
-    print("Creating your player ...")
-    main()
+    iam = engine.Player()
+    engine.mes("Creating your player ...")
 
 def main():
+
+    initPlayer()
 
     while True:
 
         i = 0
 
-        while i <= len(Entytes):
-            if Entytes[i] is not None:
-                Entytes[i].cheklive()
-            else:
-                break
+        while i <= len(engine.Entytes):
+            engine.Entytes(i).cheklive
 
         action = input()
 
         if action == "join":
-            iam = Player()
+            iam = engine.Player()
 
         elif action == "add entyty":
-            added = Player()
+            added = engine.Player()
 
         elif action == "attack":
-            print("Enter target:")
+            engine.text("Enter target:")
             target = input()
-            print("Enter power of attack:")
+            engine.text("Enter power of attack:")
             damage = int(input())
-            iam.attack(damage, target)
+            engine.Entytes(iam).attack(damage, target)
 
         elif action == "move":
-            print("Enter distance x:")
+            engine.text("Enter distance x:")
             xn = int(input())
-            print("also y:")
+            engine.text("also y:")
             yn = int(input())
-            iam.move(iam.x, iam.y, xn, yn)
+            engine.Entytes(iam).move(iam.x, iam.y, xn, yn)
 
         elif action == "exit":
             quit(0)
 
         elif action == "set block":
-            print("Enter location")
-            print("x:")
+            engine.text("Enter location")
+            engine.text("x:")
             blockx = int(input())
-            print("y:")
+            engine.text("y:")
             blocky = int(input())
-            if iam.x + 1 or - 1 == blockx and iam.y + 1 or - 1 == blocky:
-                new = Block()
-                Blocks(len(Blocks)).y = blocky
-                Blocks(len(Blocks)).x = blockx
-            elif iam.x == blockx and iam.y == blocky:
-                print("You can't create block at youself")
+            if engine.Entytes(iam).x + 1 or - 1 == blockx and engine.Entytes(iam).y + 1 or - 1 == blocky:
+                new = engine.Block()
+                engine.Blocks(len(engine.Blocks)).y = blocky
+                engine.Blocks(len(engine.Blocks)).x = blockx
+            elif engine.Entytes(iam).x == blockx and engine.Entytes(iam).y == blocky:
+                engine.text("You can't create block at youself")
                 main()
             else:
-                print("It not near")
+                engine.text("It not near")
                 main()
 
         else:
-            print("incoorrect action")
+            engine.text("incoorrect action")
             main()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
