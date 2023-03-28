@@ -1,8 +1,5 @@
-import EntytyOrientedGameEngine.EntytyOrientedGameEngine as engine
+from EntytyOrientedGameEngine import *
 
-def initPlayer():
-    iam = engine.Player()
-    engine.mes("Creating your player ...")
 
 def main():
 
@@ -12,53 +9,51 @@ def main():
 
         i = 0
 
-        while i <= len(engine.Entytes):
-            engine.Entytes(i).cheklive
+        while i <= len(Entytes):
+            Entytes(i).cheklive
 
         action = input()
 
         if action == "join":
-            iam = engine.Player()
+            iam = Player()
 
         elif action == "add entyty":
-            added = engine.Player()
+            added = Player()
 
         elif action == "attack":
-            engine.text("Enter target:")
+            mes("Enter target:")
             target = input()
-            engine.text("Enter power of attack:")
+            mes("Enter power of attack:")
             damage = int(input())
-            engine.Entytes(iam).attack(damage, target)
+            Entytes(iam.name).attack(damage, target)
 
         elif action == "move":
-            engine.text("Enter distance x:")
+            mes("Enter distance x:")
             xn = int(input())
-            engine.text("also y:")
+            mes("also y:")
             yn = int(input())
-            engine.Entytes(iam).move(iam.x, iam.y, xn, yn)
+            Entytes(iam.name).move(iam.x, iam.y, xn, yn)
 
         elif action == "exit":
             quit(0)
 
         elif action == "set block":
-            engine.text("Enter location")
-            engine.text("x:")
+            mes("Enter location")
+            mes("x:")
             blockx = int(input())
-            engine.text("y:")
+            mes("y:")
             blocky = int(input())
-            if engine.Entytes(iam).x + 1 or - 1 == blockx and engine.Entytes(iam).y + 1 or - 1 == blocky:
-                new = engine.Block()
-                engine.Blocks(len(engine.Blocks)).y = blocky
-                engine.Blocks(len(engine.Blocks)).x = blockx
-            elif engine.Entytes(iam).x == blockx and engine.Entytes(iam).y == blocky:
-                engine.text("You can't create block at youself")
+            if Entytes(iam.name).x + 1 or - 1 == blockx and Entytes(iam.name).y + 1 or - 1 == blocky:
+                new = Block(x=blockx, y=blocky)
+            elif Entytes(iam.name).x == blockx and Entytes(iam).y == blocky:
+                mes("You can't create block at youself")
                 main()
             else:
-                engine.text("It not near")
+                mes("It not near")
                 main()
 
         else:
-            engine.text("incoorrect action")
+            mes("incoorrect action")
             main()
 
 if __name__ == "__main__":
