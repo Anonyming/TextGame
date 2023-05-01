@@ -1,60 +1,77 @@
-from EntytyOrientedGameEngine import *
-
+import EntytyOrientedGameEngine as EOGE  # import game engine
 
 def main():
 
-    initPlayer()
+    EOGE.initPlayer()  # init the player
 
-    while True:
+    i = 30
+    for i in range(0, 30):  # the main game
 
-        i = 0
+        i = 0  # check death entytes
+        while i <= len(EOGE.Entytes):
+            EOGE.Entytes[i].checklive
 
-        while i <= len(Entytes):
-            Entytes(i).cheklive
+        print(f'You have {i} turns')
+        print("Enter action")
+        action = input()  # input, that player wanna do
 
-        action = input()
+        if action == "add entyty":  # add a passive entyty
+            added = EOGE.Player()
 
-        if action == "join":
-            iam = Player()
-
-        elif action == "add entyty":
-            added = Player()
-
-        elif action == "attack":
-            mes("Enter target:")
+        elif action == "attack":  # attack an entyty
+            print("Enter target:")
             target = input()
-            mes("Enter power of attack:")
+            print("Enter power of attack:")
             damage = int(input())
-            Entytes(iam.name).attack(damage, target)
+            EOGE.Entytes(EOGE.iam.name).attack(damage, target)
 
-        elif action == "move":
-            mes("Enter distance x:")
+        elif action == "move":  # go to some coordinates
+            print("Enter distance x:")
             xn = int(input())
-            mes("also y:")
+            print("also y:")
             yn = int(input())
-            Entytes(iam.name).move(iam.x, iam.y, xn, yn)
+            EOGE.Entytes(EOGE.iam.name).move(EOGE.iam.x, EOGE.iam.y, xn, yn)
 
-        elif action == "exit":
+        elif action == "exit":  # leave the game
             quit(0)
 
-        elif action == "set block":
-            mes("Enter location")
-            mes("x:")
+        elif action == "set block":  # set a block
+            print("Enter location")
+            print("x:")
             blockx = int(input())
-            mes("y:")
+            print("y:")
             blocky = int(input())
-            if Entytes(iam.name).x + 1 or - 1 == blockx and Entytes(iam.name).y + 1 or - 1 == blocky:
-                new = Block(x=blockx, y=blocky)
-            elif Entytes(iam.name).x == blockx and Entytes(iam).y == blocky:
-                mes("You can't create block at youself")
+            if EOGE.Entytes(EOGE.iam.name).x + 1 or - 1 == blockx and EOGE.Entytes(EOGE.iam.name).y + 1 or - 1 == blocky:  # all's good
+                new = EOGE.Block(x=blockx, y=blocky)
+            elif EOGE.Entytes(EOGE.iam.name).x == blockx and EOGE.Entytes(EOGE.iam).y == blocky:  # tried create a block on self
+                print("You can't create block at yourself")
                 main()
-            else:
-                mes("It not near")
+            else:  # tried to create block not near with self
+                print("It not near")
                 main()
 
-        else:
-            mes("incoorrect action")
+        else:  # not understand action
+            print("incorrect action")
             main()
 
+        i = i - 1
+    print("YOU HAVEN'T TURNS")
+    menu()
+
+def menu():
+    print("MENU")
+    print("1) NEW GAME")
+    print("2) EXIT")
+    print("ENTER NUMBER OF CHOSEN")
+    __chose = int(input())
+    if __chose == 1:
+        main()
+    elif __chose == 2:
+        quit(1)
+    else:
+        print("Action is not supported")
+        menu()
+
 if __name__ == "__main__":
-    main()
+    menu()
+

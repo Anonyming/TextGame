@@ -1,64 +1,68 @@
-Entytes = list()
+Entytes = list()  # some DBs
 Blocks = list()
 
-def mes(message):
-    print(message)
-
-class Block():
+class Block():  # the block class
     def __init__(self, x, y):
         x = x
         y = y
+        Blocks.append(self)
 
-class Player():
+    def __del__(self):
+        print(f'Block at x:{self.x} y:{self.y} destroyed')
+
+class Player():  # the player class
 
 
     def __init__(self):
 
-        mes("Enter number (if you will play this body type 0) :")
-        self.name = int(input())
+        print("enter name:")
+        self.name = input()
         self.health = 100
         self.experience = 2
         self.strength = 5.2
         self.armor = 20.3
         self.x = 0
         self.y = 0
-        Entytes[self.name] = self
-        del(self)
+        Entytes.append(self)  # add to DB
 
 
-    def move(self, x, y, yn, xn):
+    def move(self, x, y, yn, xn):  # move to some coordinates
         # yn - change y coordinate
         # xn - change x coordinate
         self.x = self.x + xn
         self.y = self.y + yn
 
-    def attack(self, damage, target):
-        if target.x == self.x + 1 or self.x - 1 and target.y == self.y + 1 or self.y - 1:
-            selfdamage = damage//10
+    def attack(self, damage, target):  ## attack some entyty
+        if target.x == self.x + 1 or self.x - 1 and target.y == self.y + 1 or self.y - 1:  # attacker is near
+            selfdamage = damage//10  # weary
             damage = damage - target.armor
             target.health = target.health - damage
             self.health = self.health - selfdamage
-        else:
-            mes("Target is not near")
+        else:  # attacker is not near
+            print("Target is not near")
 
-    def regen(self):
+    def regen(self):  # regen self
         self.health = self.health + 1\
 
-    def checklive(self):
+    def checklive(self):  # chck for live or die
         if self.health > 0:
             pass
         else:
-            mes("You die")
+            print(f'{self.name} die')
             self.kill
             return(False)
 
-    def kill(self):
+    def kill(self):  # die
         if self.name == 0:
-            mes("You lose. Restarting...")
+            print("You lose. Restarting...")
         else:
             pass
-        Entytes.pop(self.name)
+        Entytes.pop(self)
+        self.__del__()
 
-def initPlayer():
+    def __del__(self):
+        print(f'{self.name} die')
+
+def initPlayer():  # init the player
+    print("Creating your player ...")
     iam = Player()
-    mes("Creating your player ...")
